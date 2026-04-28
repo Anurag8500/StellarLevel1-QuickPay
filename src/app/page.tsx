@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { Header } from "@/components/Header";
 import { BalanceSection } from "@/components/BalanceSection";
 import { SendPayment } from "@/components/SendPayment";
+import { TransactionHistory } from "@/components/TransactionHistory";
 import { Footer } from "@/components/Footer";
 import { useFreighter } from "@/hooks/useFreighter";
 
@@ -11,7 +12,7 @@ export default function Home() {
   const { connected } = useFreighter();
   const [refreshKey, setRefreshKey] = useState(0);
 
-  const handleBalanceRefresh = useCallback(() => {
+  const handleRefresh = useCallback(() => {
     setRefreshKey((prev) => prev + 1);
   }, []);
 
@@ -34,7 +35,8 @@ export default function Home() {
             <div key={refreshKey}>
               <BalanceSection />
             </div>
-            <SendPayment onBalanceRefresh={handleBalanceRefresh} />
+            <SendPayment onBalanceRefresh={handleRefresh} />
+            <TransactionHistory refreshTrigger={refreshKey} />
           </div>
         )}
 
