@@ -10,10 +10,13 @@ export function BalanceSection() {
   const [balance, setBalance] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [faucetLoading, setFaucetLoading] = useState(false);
+  const [faucetStatus, setFaucetStatus] = useState<"success" | "error" | null>(null);
 
   useEffect(() => {
     setBalance(null);
     setError(null);
+    setFaucetStatus(null);
 
     if (connected && address) {
       setLoading(true); 
@@ -32,6 +35,30 @@ export function BalanceSection() {
       setBalance(null);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleFaucet = async () => {
+    if (!address) return;
+
+    setFaucetLoading(true);
+    setFaucetStatus(null);
+
+    try {
+      const res = await fetch(`https://friendbot.stellar.org/?addr=${address}`);
+
+      if (!res.ok) {
+        throw new Error("Friendbot request failed");
+      }
+
+      setFaucetStatus("success");
+      
+      await fetchBalance(address);
+    } catch (err) {
+      console.error("Faucet error:", err);
+      setFaucetStatus("error");
+    } finally {
+      setFaucetLoading(false);
     }
   };
 
@@ -81,6 +108,42 @@ export function BalanceSection() {
             </p>
           ) : (
             <p className="text-zinc-600 text-sm">No balance found</p>
+          )}
+        </div>
+
+        <div className="mt-6 pt-6 border-t border-zinc-800/50">
+          <button
+            onClick={handleFaucet}
+            disabled={faucetLoading}
+            className="w-full px-4 py-3 rounded-xl bg-violet-600/10 text-violet-400 font-medium hover:bg-violet-600/20 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 border border-violet-600/20"
+            title="Friendbot sends a fixed amount of test XLM"
+          >
+            {faucetLoading ? (
+              <>
+                <div className="w-4 h-4 border-2 border-violet-400 border-t-transparent rounded-full animate-spin" />
+                <span>Requesting funds...</span>
+              </>
+            ) : (
+              <>
+                <span className="text-lg">💧</span>
+                <span>Get Test XLM</span>
+              </>
+            )}
+          </button>
+          
+          {faucetStatus === "success" && (
+            <p className="text-green-400 text-xs mt-3 text-center flex items-center justify-center gap-1.5 animate-in fade-in slide-in-from-top-1 duration-300">
+              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+              Test XLM received!
+            </p>
+          )}
+          
+          {faucetStatus === "error" && (
+            <p className="text-red-400 text-xs mt-3 text-center animate-in fade-in slide-in-from-top-1 duration-300">
+              Failed to fund wallet. Try again.
+            </p>
           )}
         </div>
       </div>
