@@ -21,6 +21,10 @@ export async function buildPaymentTransaction(
   destinationAddress: string,
   amount: string
 ): Promise<StellarSdk.Transaction> {
+  if (sourceAddress === destinationAddress) {
+    throw new Error("You cannot send funds to your own address");
+  }
+
   const account = await horizon.loadAccount(sourceAddress);
 
   const transaction = new StellarSdk.TransactionBuilder(account, {
