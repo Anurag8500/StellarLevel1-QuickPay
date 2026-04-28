@@ -10,13 +10,12 @@ A clean, minimal, and fully functional **Stellar-based micro-payment application
 
 | Screen | Preview |
 |---|---|
-| Landing / Connect Wallet | ![Landing Page](https://placeholder.cloudinary.com/landing) |
-| Dashboard — Balance & Send | ![Dashboard](https://placeholder.cloudinary.com/dashboard) |
-| Payment Success | ![Payment Success](https://placeholder.cloudinary.com/success) |
-| Transaction History | ![Transaction History](https://placeholder.cloudinary.com/history) |
-| Disconnect Confirmation Modal | ![Disconnect Modal](https://placeholder.cloudinary.com/disconnect) |
-| Switch Wallet Guide Modal | ![Switch Modal](https://placeholder.cloudinary.com/switch) |
-| Network Warning (Non-Testnet) | ![Network Warning](https://placeholder.cloudinary.com/network-warning) |
+| Wallet connected state | ![Wallet Connected](https://res.cloudinary.com/drfrgsiqx/image/upload/v1777390860/Screenshot_2026-04-28_204114_pzcnpf.png) |
+| Dashboard — Balance & Send | ![Dashboard](https://res.cloudinary.com/drfrgsiqx/image/upload/v1777391505/Screenshot_2026-04-28_212024_wk59yp.png) |
+| Payment Success | ![Payment Success](https://res.cloudinary.com/drfrgsiqx/image/upload/v1777391170/Screenshot_2026-04-28_204343_f6ucl0.png) |
+| Transaction History | ![Transaction History](https://res.cloudinary.com/drfrgsiqx/image/upload/v1777391633/Screenshot_2026-04-28_212334_tmczlw.png) |
+| Stellar Expert Explorer | ![Stellar Expert Explorer](https://res.cloudinary.com/drfrgsiqx/image/upload/v1777391178/Screenshot_2026-04-28_204441_lgqd2d.png) |
+| Fund Wallet Friendbot | ![Fund Wallet Friendbot](https://res.cloudinary.com/drfrgsiqx/image/upload/v1777392282/Screenshot_2026-04-28_213239_vosrzv.png) |
 
 ---
 
@@ -110,8 +109,8 @@ Before running this project, make sure you have:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/stellar-quickpay.git
-cd stellar-quickpay
+git clone https://github.com/Anurag8500/StellarLevel1-QuickPay.git
+cd StellarLevel1-QuickPay
 ```
 
 ### 2. Install dependencies
