@@ -74,13 +74,13 @@ export function Header() {
             </div>
             <button
               onClick={() => setShowSwitchModal(true)}
-              className="px-3 py-1.5 text-xs font-medium text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200"
+              className="px-3.5 py-1.5 text-xs font-semibold text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/10 rounded-full transition-all duration-300"
             >
               Switch
             </button>
             <button
               onClick={() => setShowConfirm(true)}
-              className="px-3 py-1.5 text-xs font-medium text-zinc-400 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200"
+              className="px-3.5 py-1.5 text-xs font-semibold text-zinc-500 hover:text-red-400 hover:bg-red-500/5 border border-transparent hover:border-red-500/10 rounded-full transition-all duration-300"
             >
               Disconnect
             </button>

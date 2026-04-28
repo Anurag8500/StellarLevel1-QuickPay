@@ -33,12 +33,14 @@ export default function Home() {
         <main className="flex-1 w-full max-w-6xl mx-auto px-6 py-10 flex flex-col gap-8">
 
           {/* Hero Text */}
-          <div className="text-center space-y-3 pt-4 animate-in slide-in-from-bottom-4 fade-in duration-700">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white tracking-tight">
-              Send XLM instantly
+          <div className="text-center space-y-3 pt-8 pb-4 animate-in slide-in-from-bottom-4 fade-in duration-1000">
+            <h2 className="text-5xl sm:text-7xl font-extrabold tracking-tighter">
+              <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/50">
+                Stellar QuickPay
+              </span>
             </h2>
-            <p className="text-zinc-400 text-base sm:text-lg max-w-lg mx-auto">
-              A minimal, secure way to send micro-payments on the Stellar network
+            <p className="text-zinc-500 text-lg sm:text-xl max-w-2xl mx-auto font-medium">
+              Send XLM <span className="text-zinc-300">instantly</span>. Minimal & Secure.
             </p>
           </div>
 

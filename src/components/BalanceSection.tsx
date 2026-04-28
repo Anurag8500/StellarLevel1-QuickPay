@@ -42,11 +42,18 @@ export function BalanceSection() {
     setFaucetStatus(null);
     try {
       const res = await fetch(`https://friendbot.stellar.org/?addr=${address}`);
-      if (!res.ok) throw new Error("Friendbot request failed");
+      
+      if (!res.ok) {
+        const text = await res.text();
+        
+        setFaucetStatus("error");
+        return;
+      }
+
       setFaucetStatus("success");
       await fetchBalance(address);
     } catch (err) {
-      console.error("Faucet error:", err);
+      // Silent error handling for network failures
       setFaucetStatus("error");
     } finally {
       setFaucetLoading(false);

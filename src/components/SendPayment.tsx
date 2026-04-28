@@ -135,7 +135,13 @@ export function SendPayment({ onBalanceRefresh }: SendPaymentProps) {
       fetchBalance();
     } catch (err) {
       setStatus("error");
-      setErrorMessage(err instanceof Error ? err.message : "Transaction failed");
+      let msg = err instanceof Error ? err.message : "Transaction failed";
+      
+      if (msg.includes("User declined") || msg.includes("XDR Read Error")) {
+        msg = "Transaction cancelled";
+      }
+      
+      setErrorMessage(msg);
       setResult(null);
     }
   };
@@ -263,9 +269,10 @@ export function SendPayment({ onBalanceRefresh }: SendPaymentProps) {
               min="0"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
+              onWheel={(e) => (e.target as HTMLInputElement).blur()}
               placeholder="0.0"
               disabled={status === "loading"}
-              className="w-full px-4 py-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800/80 text-white placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all duration-200 disabled:opacity-50 font-mono text-xl"
+              className="w-full px-4 py-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800/80 text-white placeholder-zinc-500 focus:outline-none focus:ring-1 focus:ring-white/20 focus:border-white/20 transition-all duration-200 disabled:opacity-50 font-mono text-xl [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
             />
           </div>
 
